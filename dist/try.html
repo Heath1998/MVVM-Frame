@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>final</title>
+
+    <script src="MVVM.js"></script>
+
+</head>
+<body>
+    <div id='app'>
+        <p>TodoList v-for练习</p>
+        <div>
+            <input type="text" v-model="dataStr">
+            <button v-on:click="addOneText">add</button>
+        </div>
+        <div>
+            <div v-for="item in items">
+            <span>{{item}}</span>
+            <button v-on:click="deletOneText(item)">X</button>
+            </div>
+        </div>
+        <div>
+            <p v-bind:style="[styleStr]">There are {{getItemsNum}} items</p>
+        </div>
+    </div>
+</body>
+
+<script>
+    var vm =new MVVM({
+        el:'#app',
+        data:{
+            dataStr:'',
+            items:[],
+            styleStr:'color: #f00;'
+        },
+        computed:{
+            getItemsNum: function () {
+                return this.items.length
+            }
+        },
+        methods:{
+            addOneText: function () {
+                this.items.push(this.dataStr)
+                this.dataStr = ''
+            },
+            deletOneText: function (item) {
+                this.items = this.items.filter(function (x) {
+                    return x != item
+                })
+            }
+        }
+    })
+
+
+console.log(vm)
+</script>
+</html>

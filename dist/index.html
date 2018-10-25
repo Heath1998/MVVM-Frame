@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Page Title</title>
+    <script src="./MVVM.js"></script>
+</head>
+<body>
+    <a href="./try.html">TodoList的例子</a>
+    <div id="app">
+        <div id="one">
+            <h4>v-bind单向绑定 </h4>
+            <p>{{num}}</p>
+            <p><button @click='add'>增加1</button></p>
+        </div>
+        <div id="two">
+                <h4>v-model双向绑定 </h4>
+            <p>{{model}}</p>
+            <p><input type="text" v-model='model'></p>
+        </div>
+        <div id="three">
+                <h4>v-bind:style绑定 </h4>
+            <p>v-bind:style = 'sty' 其中sty = 'color:red;'</p>
+            <p v-bind:style="[sty]">这是style设置的红色</p>
+        </div>
+        <div id="four">
+                <h4>v-if绑定 </h4>
+                <p v-if='vif'>这是v-if为true</p>
+                <button @click='btnIf'>点击设置消失/显示</button>
+        </div>
+        <div id="five">
+            <h4>子组件 </h4>
+            <child message='来自父组件的静态字符串' :messagesport='messSportFather' ></child>
+            <button @click='changeMessage'>改变动态父向子传递的数据</button>
+        </div>
+    </div>
+</body>
+<script>
+    var vm = new MVVM({
+        el:'#app',
+        data:{
+            num: 1,
+            model: '这是双向绑定',
+            sty: 'color:red;',
+            messfather:'来自父组件的静态字符串',
+            messSportFather: '来自父组件的动态字符串 ',
+            vif:true
+        },
+        methods:{
+            btnIf() {
+                this.vif = !this.vif
+            },
+            add() {
+                this.num += 1
+            },
+            changeMessage() {
+                this.messSportFather = '已经改变来自父组件的动态字符串' 
+            }
+        },
+        components:{
+        'child':{
+            props:["message"],
+            template:"<p >{{message}}</p><p>{{messagesport}}</p>",
+            data(){
+                return{
+                    
+                }
+            }
+        }
+    }
+    })
+console.log(vm)
+    
+</script>
+<style type="text/css" >
+#app{
+  
+}
+#one{
+    border-bottom:2px solid blue;
+    border-top:2px solid blue;
+}
+#two{
+    border-bottom:2px solid blue;
+}
+#three{
+    border-bottom:2px solid blue;
+}
+#four{
+    border-bottom:2px solid blue;
+}
+</style>
+</html>
