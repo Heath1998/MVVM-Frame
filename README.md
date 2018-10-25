@@ -14,7 +14,7 @@
 
 ----
 
-例子[./dist/index.html](./dist/index.html)
+例子[https://zehongfan.github.io/work/MVVM-frame/index.html](https://zehongfan.github.io/work/MVVM-frame/index.html)
 
 当然还有许多功能为实现和未优化。未使用虚拟节点(看了好久)所以性能可能不是很好。   
  生命周期(面向切面编程)就是mounted等钩子函数，等有时间再补，挺简单的，
